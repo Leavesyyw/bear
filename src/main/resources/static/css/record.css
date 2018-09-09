@@ -1,0 +1,222 @@
+.main{
+    z-index: 5;
+}
+header{
+    width: 100%;
+    height: 50px;
+    z-index: 5;
+    position: absolute;
+}
+#bar {
+    position: fixed;
+    top: 0;
+    width: 1550px;
+    height: 65px;
+    background-color: #66ccff;
+    color: #fff;
+  }
+
+  #bar-son:before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    height: 60px;
+    width: 400px;
+    background: transparent;
+    border-right: 50px solid transparent;
+    border-top: 90px solid #223388;
+    top:0;
+  }
+
+  #bar-son:after {
+    content: '';
+    z-index: -2;
+    position: absolute;
+    Left: 0;
+    height: 80px;
+    width: 403px;
+    background-color: transparent;
+    border-right: 54px solid transparent;
+    border-top: 96px solid #66ccff;
+    top: 0;
+  }
+
+.title{
+    width: 30%;
+    margin-top: -20px;
+    position: relative;
+    left: -150px;
+    font-size: 30px;
+}
+.title em {
+    color: #f54c53;
+}
+.title a {
+    margin: 5px 10px;
+    color: #fff;
+    text-decoration:none; 
+    font-family: Microsoft YaHei;
+    
+}
+.part{
+    width: 50%;
+    float: right;
+    margin:20px 30px;
+}
+.part ul{
+    margin:5px 10px;
+}
+.part ul li {
+    padding: 2px 10px;
+    margin: 2px;
+    list-style: none;
+    display: inline;
+}
+.part ul li a {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration:none;
+}
+header ul li a:hover, header ul li a:focus, header ul li a:active {
+    color: white;
+    text-decoration:none;
+}
+.main{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    width: 100%;
+    margin-top: 100px;
+}
+.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
+     width:33%;
+     height: 170px;
+}
+.box1{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+}
+.box1 img{
+    padding: 0;
+    margin: 0;
+}
+.box2{
+    text-align: center;
+}
+.box2 h2{
+    margin-top: 100px;
+    margin-left: 5px;
+    color:rgb(219, 189, 20);
+}
+.box3 p{
+    color: beige;
+}
+.box7 p{
+    font-size: 30px;
+    position: absolute;
+    color: rgb(247, 166, 179);
+    position: absolute;
+    left: -1000px;
+}   
+.sty{
+    animation:in 2s  backwards cubic-bezier(0, 0.76, 0.71, 0.79); 
+}
+.box8{
+    text-align: center;
+}
+.box8 h2{
+    margin-top: -30px;
+    color:rgb(219, 189, 20);
+}
+.box9{
+    text-align: center;
+}
+.in5{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content:space-between;
+    color:rgb(219, 189, 20);
+}
+progress
+{
+    height: 25px;
+    color:rgb(236, 226, 82); /*兼容IE10的已完成进度背景*/
+    border:2px solid rgb(226, 186, 52);
+    border-radius: 10px;
+    background:white;/*这个属性也可当作Chrome的已完成进度背景，只不过被下面的::progress-bar覆盖了*/      
+    margin-left: 200px;
+}
+
+progress::-webkit-progress-bar
+
+{
+   background:white;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
+}
+
+progress::-webkit-progress-value
+{
+     background:rgb(236, 226, 82);
+     border-radius: 10px;
+}
+#text{
+    color:pink; 
+    -webkit-text-stroke: 1px #000; 
+    margin-left: 200px;
+    margin-top: 0;
+}
+p{
+    margin-left: 200px;
+
+}
+.joinus{
+    text-align: center;
+}
+.joinus h2{
+    margin-top: 200px;
+    margin-left: 200px;
+    margin-right: 200px;
+    color:rgb(184, 16, 38);
+    font-size: 25px;
+}
+.joinus h1{
+    margin-top: 100px;
+    color:rgb(184, 16, 38);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+}
+.joinus p{
+    margin-top: 100px;
+    margin-left: -20px;
+    color:rgb(184, 16, 38);
+    font-size: 20px;
+}
+
+@keyframes in {
+    0%  {left: -400px; top:350px}
+    20% {left: -260px; top:400px;}
+    50% {left: -200px; top:350px;}
+    100% {left: -150px; top:400px;}
+}
+.bg{width:100%;height:567px;position: relative;overflow: hidden;}
+
+
+.new{width:100%;height:900px;background-color:gainsboro;}
+
+.newz{width:100%;height:800px;margin:0 atuo;padding-left: 23px;}
+
+.new_tu{width:350px;height:900px;float:left;padding-left:60px;}
+.new_tu img{width:150px;height:130px;}
+
+.new_wen{width:700px;height:480px;float:left;padding:5px;background-color: white; }
+.new_wen ul{width:550px;margin:0 atuo;}
+.new_wen ul li{height:53px;line-height:53px;padding-left:20px;border-bottom:dotted 1px black ;list-style: none;}
+.new_wen ul li span{float:right;color:black;font-size: 1.3em;}
+.new_wen ul li a{float:left;color:black;text-decoration: none;font-size: 1.5em;}
+.new_wen ul li a:hover{background-color:yellow;} 

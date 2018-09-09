@@ -1,0 +1,340 @@
+<html>
+
+<head>
+
+    <!-- content type -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <!-- viewport -->
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+
+    <!-- title -->
+    <title>点滴打卡</title>
+    <!-- add css -->
+    <link rel="stylesheet" href="css/record.css">
+    <link rel="stylesheet" href="css/cbstyle.css" media="screen" type="text/css" />
+    <!-- add js -->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script type="text/javascript" src="js/ThreeCanvas.js"></script>
+    <script type="text/javascript" src="js/Snow.js"></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            /* background:url(images/1.1.jpg) ;
+            background-repeat:no-repeat;
+            background-size:100%,100%; */
+        }
+        #background{
+        z-index: -5;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        }
+        .over{
+        z-index: -4;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        filter: opacity(70%);
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+    
+</head>
+
+<body onLoad="init()">
+     <div class="over"></div> 
+     <img id="background" src="images/b.png"> 
+     <audio id="sound1" autoplay="autoplay">
+            <source src="sound/daka.ogg" type="audio/ogg">
+            <source src="sound/daka.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+    </audio>
+    <audio id="sound2" autoplay="autoplay">
+            <source src="sound/xunzhang.ogg" type="audio/ogg">
+            <source src="sound/xunzhang.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+    </audio>
+    <header>
+    <div id="bar">
+            <div class="part">
+                    <ul>
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <li>
+                            <a href="news.html">新闻快讯</a>
+                        </li>
+                        <li>
+                            <a href="record.html">点滴打卡</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">关于我们</a>
+                        </li>
+                        <li>
+                            <img src="images/user.png" width="20px" height="20px" >
+                            user
+                        </li>
+                    </ul>
+                </div>
+    <div id="bar-son">
+      
+    <div class="title"><p><img src="images/logo.png" style="width:60px;height:60px">bear's tear</p></div>
+      
+    </div>
+    
+    </div>
+
+        
+    </header>
+    <div class="main">
+        <div class="box1">
+                <img id="mygif1" src="images/1.gif" style="width:120px;height:150px;display:none">
+                <img id="mygif2" src="images/2.gif" style="width:120px;height:150px;display:none">
+                <img id="mygif3" src="images/3.gif" style="width:120px;height:150px;display:none">
+                <img id="mygif4" src="images/4.gif" style="width:150px;height:180px;display:none">
+                <img id="mygif5" src="images/5.gif" style="width:150px;height:180px;display:none">
+        </div>
+        <div class="box2">
+                
+            <h2>绿色出行</h2>
+        </div>
+        <div class="box3">
+                <h2 class="text">你已连续打卡20天</h2>
+            <progress max="100"  id="pg"></progress>
+                    <p id="number"></p>
+        </div>
+        <div class="box4"></div>
+        <div class="box5">
+            <div class="in5">
+                    <h2>熄灯一小时</h2>
+                    <input type="checkbox" id="cbtest" onclick="addprogress()" />
+                    <label for="cbtest" class="check-box"></label>
+                    <h2>未使用空调</h2>
+            </div>
+        </div>
+        <div class="box6"></div>
+        <div class="box7">
+               <p id="gt">恭喜你获得北极熊勋章一枚！</p> 
+        </div>
+        <div class="box8">
+                <h2>未使用一次性餐具和塑料袋</h2>
+        </div>
+        <div class="box9">
+                <img id="myPic" src="images/1.png" width="60px" height="60px">
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript">
+    function playsound1(){
+         var mydaka=document.getElementById("sound1");
+         mydaka.play();
+    }
+    function playsound2(){
+         var myxunzhang=document.getElementById("sound2");
+         myxunzhang.play();
+    }
+    var gif = 1;
+    var pg = document.getElementById('pg');
+    document.getElementById("number").innerHTML = pg.value +'/100';
+    function addprogress() {
+        var pg = document.getElementById('pg');
+        var cb = document.getElementById('cbtest');
+        document.getElementById("number").innerHTML = pg.value +'/100';
+        if (cb.checked == true && pg.value != 100) {
+            pg.value += 20;
+            document.getElementById("number").innerHTML = pg.value +'/100';
+            playsound1();
+            if (crr == 1) { changePic1(); crr++; }
+            else if (crr == 2) { changePic2(); crr++; }
+            else if (crr == 3) { changePic3(); crr++; }
+            else if (crr == 4) { changePic4(); crr++; }
+            else if (crr == 5) { changePic5(); crr++; }
+        }
+        else if (cb.checked == true && pg.value == 100) 
+        { 
+            pg.value = 0;  
+            pg.value += 20;
+            document.getElementById("number").innerHTML = pg.value +'/100';
+            playsound1();
+            crr = 1;
+            var imgObj = document.getElementById("myPic");
+            imgObj.src = "images/" + crr + ".png";
+            imgObj.style.width = 80 + 'px';
+            imgObj.style.height = 80 + 'px';
+            crr++;
+        }
+    }
+    var crr = 1;
+    
+    function changePic1() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.style.width = 80 + 'px';
+        imgObj.style.height = 80 + 'px';
+    }
+    function changePic2() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.style.width = 100 + 'px';
+        imgObj.style.height = 100 + 'px';
+    }
+    function changePic3() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.style.width = 120 + 'px';
+        imgObj.style.height = 120 + 'px';
+    }
+    function changePic4() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.src = "images/" + crr + ".png";
+        imgObj.style.width = 130 + 'px';
+        imgObj.style.height = 130 + 'px';
+    }
+    function changePic5() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.src = "images/" + crr + ".png";
+        imgObj.style.width = 140 + 'px';
+        imgObj.style.height = 140 + 'px';
+        if(gif==1){var gifObj1 = document.getElementById("mygif1"); gifObj1.style.display = "inline"; fly_in();playsound2();}
+        else if(gif==2){ var gifObj2 = document.getElementById("mygif2"); gifObj2.style.display = "inline"; fly_in();playsound2();}
+        else if(gif==3){ var gifObj3 = document.getElementById("mygif3"); gifObj3.style.display = "inline"; fly_in();playsound2();}
+        else if(gif==4){ var gifObj4 = document.getElementById("mygif4"); gifObj4.style.display = "inline"; fly_in();playsound2();}
+        else if(gif==5){ var gifObj5 = document.getElementById("mygif5"); gifObj5.style.display = "inline"; fly_in();playsound2();}
+        gif ++;
+    }
+    function fly_in()
+    {
+        $('#gt').addClass('sty');
+        var time = setTimeout(function(){
+            $('#gt').removeClass('sty')
+        },3000);
+
+    }
+</script>
+
+<script type="text/javascript">
+    var SCREEN_WIDTH = window.innerWidth;
+    var SCREEN_HEIGHT = window.innerHeight;
+    
+    var container;
+    
+    var particle;
+    
+    var camera;
+    var scene;
+    var renderer;
+    
+    var mouseX = 0;
+    var mouseY = 0;
+    
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+    
+    var particles = []; 
+    var particleImage = new Image();//THREE.ImageUtils.loadTexture( "img/ParticleSmoke.png" );
+    particleImage.src = 'images/ParticleSmoke.png'; 
+    
+    
+    
+    function init() {
+    
+        container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.top = '0px';
+        container.style.zIndex = -2;
+        document.body.appendChild(container);
+    
+        camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
+        camera.position.z = 1000;
+    
+        scene = new THREE.Scene();
+        scene.add(camera);
+            
+        renderer = new THREE.CanvasRenderer();
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        var material = new THREE.ParticleBasicMaterial( { map: new THREE.Texture(particleImage) } );
+            
+        for (var i = 0; i < 500; i++) {
+    
+            particle = new Particle3D( material);
+            particle.position.x = Math.random() * 2000 - 1000;
+            particle.position.y = Math.random() * 2000 - 1000;
+            particle.position.z = Math.random() * 2000 - 1000;
+            particle.scale.x = particle.scale.y =  1;
+            scene.add( particle );
+            
+            particles.push(particle); 
+        }
+    
+        container.appendChild( renderer.domElement );
+    
+    
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+        document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+        
+        setInterval( loop, 1000 / 60 );
+        
+    }
+    
+    function onDocumentMouseMove( event ) {
+    
+        mouseX = event.clientX - windowHalfX;
+        mouseY = event.clientY - windowHalfY;
+    }
+    
+    function onDocumentTouchStart( event ) {
+    
+        if ( event.touches.length == 1 ) {
+    
+            event.preventDefault();
+    
+            mouseX = event.touches[ 0 ].pageX - windowHalfX;
+            mouseY = event.touches[ 0 ].pageY - windowHalfY;
+        }
+    }
+    
+    function onDocumentTouchMove( event ) {
+    
+        if ( event.touches.length == 1 ) {
+    
+            event.preventDefault();
+    
+            mouseX = event.touches[ 0 ].pageX - windowHalfX;
+            mouseY = event.touches[ 0 ].pageY - windowHalfY;
+        }
+    }
+    
+    //
+    
+    function loop() {
+    
+    for(var i = 0; i<particles.length; i++)
+        {
+    
+            var particle = particles[i]; 
+            particle.updatePhysics(); 
+    
+            with(particle.position)
+            {
+                if(y<-1000) y+=2000; 
+                if(x>1000) x-=2000; 
+                else if(x<-1000) x+=2000; 
+                if(z>1000) z-=2000; 
+                else if(z<-1000) z+=2000; 
+            }				
+        }
+    
+        camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+        camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+        camera.lookAt(scene.position); 
+    
+        renderer.render( scene, camera );
+    
+        
+    }
+</script>
+
+</html>

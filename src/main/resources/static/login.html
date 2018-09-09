@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- content type -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <!-- viewport -->
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+
+    <!-- title -->
+    <title>点滴打卡</title>
+    <!-- add css -->
+    <link rel="stylesheet" href="css/record.css">
+    <link rel="stylesheet" href="css/cbstyle.css" media="screen" type="text/css" />
+    <!-- add js -->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script type="text/javascript" src="js/ThreeCanvas.js"></script>
+    <script type="text/javascript" src="js/Snow.js"></script>
+
+    
+    <style type="text/css">
+         * {
+            box-sizing: border-box;
+        } 
+        html,body {
+            margin: 0; 
+            padding: 0;
+            
+            overflow: auto;
+        }
+        #background{
+        z-index: -5;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        }
+        .over{
+        z-index: -4;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        filter: opacity(70%);
+        width: 100%;
+        height: 100%;
+        }
+        .wrap {
+            width: 100%;
+            height: 100%;
+            padding: 40px 0;
+            position: fixed;
+            
+            opacity: 0.8;
+            background: linear-gradient(to bottom right,#22a6af,#2a90d4);
+            background: -webkit-linear-gradient(to bottom right,#50a3a2,#53e3a6);
+        }
+        .wrap a{
+            position: relative;
+            left: 20px;
+            border: 1px solid white;
+            border-radius: 15px;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: white;
+
+        }
+        .container {
+            width: 60%;
+            margin: 130px auto;
+        }
+        .container h1 {
+            text-align: center;
+            color: #FFFFFF;
+            font-weight: 500;
+        }
+        .container input, .container button {
+            width: 320px;
+            display: block;
+            height: 36px;
+            border: 0;
+            outline: 0;
+            padding: 6px 10px;
+            line-height: 24px;
+            margin: 32px auto;
+            -webkit-transition: all 0s ease-in 0.1ms;
+            -moz-transition: all 0s ease-in 0.1ms;
+            transition: all 0s ease-in 0.1ms;
+        }
+        .container input[type="text"] , .container input[type="password"]  {
+            background-color: #FFFFFF;
+            font-size: 16px;
+            color: #50a3a2;
+        }
+        .container button {
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: #666666;
+            background-color: #FFFFFF;
+        }
+        .container input:focus {
+            width: 400px;
+        }
+        .container input[type='submit']:hover {
+            cursor: pointer;
+            width: 400px;
+        }
+
+        .wrap ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+        }
+        .wrap ul li {
+            list-style-type: none;
+            display: block;
+            position: absolute;
+            bottom: -120px;
+            width: 15px;
+            height: 15px;
+            z-index: -8;
+            background-color:rgba(255, 255, 255, 0.15);
+            animotion: square 25s infinite;
+            -webkit-animation: square 25s infinite;
+        }
+        .wrap ul li:nth-child(1) {
+            left: 0;
+            animation-duration: 10s;
+            -moz-animation-duration: 10s;
+            -o-animation-duration: 10s;
+            -webkit-animation-duration: 10s;
+        }
+        .wrap ul li:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            left: 10%;
+            animation-duration: 15s;
+            -moz-animation-duration: 15s;
+            -o-animation-duration: 15s;
+            -webkit-animation-duration: 15s;
+        }
+        .wrap ul li:nth-child(3) {
+            left: 20%;
+            width: 25px;
+            height: 25px;
+            animation-duration: 12s;
+            -moz-animation-duration: 12s;
+            -o-animation-duration: 12s;
+            -webkit-animation-duration: 12s;
+        }
+        .wrap ul li:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            left: 30%;
+            -webkit-animation-delay: 3s;
+            -moz-animation-delay: 3s;
+            -o-animation-delay: 3s;
+            animation-delay: 3s;
+            animation-duration: 12s;
+            -moz-animation-duration: 12s;
+            -o-animation-duration: 12s;
+            -webkit-animation-duration: 12s;
+        }
+        .wrap ul li:nth-child(5) {
+            width: 60px;
+            height: 60px;
+            left: 40%;
+            animation-duration: 10s;
+            -moz-animation-duration: 10s;
+            -o-animation-duration: 10s;
+            -webkit-animation-duration: 10s;
+        }
+        .wrap ul li:nth-child(6) {
+            width: 75px;
+            height: 75px;
+            left: 50%;
+            -webkit-animation-delay: 7s;
+            -moz-animation-delay: 7s;
+            -o-animation-delay: 7s;
+            animation-delay: 7s;
+        }
+        .wrap ul li:nth-child(7) {
+            left: 60%;
+            animation-duration: 8s;
+            -moz-animation-duration: 8s;
+            -o-animation-duration: 8s;
+            -webkit-animation-duration: 8s;
+        }
+        .wrap ul li:nth-child(8) {
+            width: 90px;
+            height: 90px;
+            left: 70%;
+            -webkit-animation-delay: 4s;
+            -moz-animation-delay: 4s;
+            -o-animation-delay: 4s;
+            animation-delay: 4s;
+        }
+        .wrap ul li:nth-child(9) {
+            width: 100px;
+            height: 100px;
+            left: 80%;
+            animation-duration: 20s;
+            -moz-animation-duration: 20s;
+            -o-animation-duration: 20s;
+            -webkit-animation-duration: 20s;
+        }
+        .wrap ul li:nth-child(10) {
+            width: 120px;
+            height: 120px;
+            left: 90%;
+            -webkit-animation-delay: 6s;
+            -moz-animation-delay: 6s;
+            -o-animation-delay: 6s;
+            animation-delay: 6s;
+            animation-duration: 30s;
+            -moz-animation-duration: 30s;
+            -o-animation-duration: 30s;
+            -webkit-animation-duration: 30s;
+        }
+
+        @keyframes square {
+            0%  {
+                    -webkit-transform: translateY(0);
+                    transform: translateY(0)
+                }
+            100% {
+                    bottom: 400px;
+                    transform: rotate(600deg);
+                    -webit-transform: rotate(600deg);
+                    -webkit-transform: translateY(-500);
+                    transform: translateY(-500)
+            }
+        }
+        @-webkit-keyframes square {
+            0%  {
+                -webkit-transform: translateY(0);
+                transform: translateY(0)
+            }
+            100% {
+                bottom: 400px;
+                transform: rotate(600deg);
+                -webit-transform: rotate(600deg);
+                -webkit-transform: translateY(-500);
+                transform: translateY(-500)
+            }
+        } 
+    </style>
+
+</head>
+<body id="all">
+
+    <div class="wrap">
+        <a href="before.html">back</a>
+        <div class="container">
+            <h1>Welcome</h1>
+
+                <input type="text" id="username" placeholder="username"/>
+                <input type="password" id="password" placeholder="password"/>
+                <button id="login">登录</button>
+
+
+        </div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    
+</div> 
+    
+    
+</body>
+<script type="text/javascript">
+    var username;
+    var ice;
+    var gold;
+    var count;
+    function success(){
+        document.getElementById("all").innerHTML= '<body onLoad="init()">\n' +
+                '<div class="over"></div>\n' +
+                '<img id="background" src="images/b.png">\n' +
+                '<audio id="sound1" autoplay="autoplay">\n' +
+                '    <source src="sound/daka.ogg" type="audio/ogg">\n' +
+                '    <source src="sound/daka.mp3" type="audio/mpeg">\n' +
+                '    Your browser does not support the audio tag.\n' +
+                '</audio>\n' +
+                '<audio id="sound2" autoplay="autoplay">\n' +
+                '    <source src="sound/xunzhang.ogg" type="audio/ogg">\n' +
+                '    <source src="sound/xunzhang.mp3" type="audio/mpeg">\n' +
+                '    Your browser does not support the audio tag.\n' +
+                '</audio>\n' +
+                '<header>\n' +
+                '    <div id="bar">\n' +
+                '        <div class="part">\n' +
+                '            <ul>\n' +
+                '                <li>\n' +
+                '                    <a href="index.html">首页</a>\n' +
+                '                </li>\n' +
+                '                <li>\n' +
+                '                    <a href="news.html">新闻快讯</a>\n' +
+                '                </li>\n' +
+                '                <li>\n' +
+                '                    <a href="login.html">点滴打卡</a>\n' +
+                '                </li>\n' +
+                '                <li>\n' +
+                '                    <a href="contact.html">关于我们</a>\n' +
+                '                </li>\n' +
+                '                <li>\n' +
+                '                    <img src="images/user.png" width="20px" height="20px" >\n' +
+                '                    user\n' +
+                '                </li>\n' +
+                '            </ul>\n' +
+                '        </div>\n' +
+                '        <div id="bar-son">\n' +
+                '\n' +
+                '            <div class="title"><p><img src="images/logo.png" style="width:60px;height:60px">bear\'s tear</p></div>\n' +
+                '\n' +
+                '        </div>\n' +
+                '\n' +
+                '    </div>\n' +
+                '</header>\n' +
+                '<div class="main">\n' +
+                '    <div class="box1">\n' +
+                '        <img id="mygif1" src="images/1.gif" style="width:120px;height:150px;display:none">\n' +
+                '        <img id="mygif2" src="images/2.gif" style="width:120px;height:150px;display:none">\n' +
+                '        <img id="mygif3" src="images/3.gif" style="width:120px;height:150px;display:none">\n' +
+                '        <img id="mygif4" src="images/4.gif" style="width:150px;height:180px;display:none">\n' +
+                '        <img id="mygif5" src="images/5.gif" style="width:150px;height:180px;display:none">\n' +
+                '    </div>\n' +
+                '    <div class="box2">\n' +
+                '\n' +
+                '        <h2>绿色出行</h2>\n' +
+                '    </div>\n' +
+                '    <div class="box3">\n' +
+                '        <h2 id="text"></h2>\n' +
+                '        <progress max="100"  id="pg"></progress>\n' +
+                '        <p id="number"></p>\n' +
+                '    </div>\n' +
+                '    <div class="box4"></div>\n' +
+                '    <div class="box5">\n' +
+                '        <div class="in5">\n' +
+                '            <h2>熄灯一小时</h2>\n' +
+                '            <input type="checkbox" id="cbtest" onclick="punchcard(username)" />\n' +
+                '            <label for="cbtest" class="check-box"></label>\n' +
+                '            <h2>未使用空调</h2>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '    <div class="box6"></div>\n' +
+                '    <div class="box7">\n' +
+                '        <p id="gt">恭喜你获得北极熊勋章一枚！</p>\n' +
+                '    </div>\n' +
+                '    <div class="box8">\n' +
+                '        <h2>未使用一次性餐具和塑料袋</h2>\n' +
+                '    </div>\n' +
+                '    <div class="box9">\n' +
+                '        <img id="myPic" src="images/1.png" width="60px" height="60px">\n' +
+                '    </div>\n' +
+                '</div>\n' +
+                '\n' +
+                '</body>';
+
+    }
+
+    function init2(){
+        console.log(ice);
+        document.getElementById("number").innerHTML = ice*20 +'/100';
+        document.getElementById('text').innerHTML="你已连续打卡"+count+"天";
+        var pg = document.getElementById('pg');
+        pg.value=20;
+        if (ice == 1) { changePic1(); }
+        else if (ice == 2) { changePic2(); }
+        else if (ice == 3) { changePic3(); }
+        else if (ice == 4) { changePic4(); }
+        else if (ice == 5) { changePic5(); }
+        if(gold==1){var gifObj1 = document.getElementById("mygif1"); gifObj1.style.display = "inline";}
+        else if(gold==2){ var gifObj2 = document.getElementById("mygif2"); gifObj2.style.display = "inline";}
+        else if(gold==3){ var gifObj3 = document.getElementById("mygif3"); gifObj3.style.display = "inline"; }
+        else if(gold==4){ var gifObj4 = document.getElementById("mygif4"); gifObj4.style.display = "inline";}
+        else if(gold==5){ var gifObj5 = document.getElementById("mygif5"); gifObj5.style.display = "inline"; }
+    }
+    function addprogress() {
+        var pg = document.getElementById('pg');
+        var cb = document.getElementById('cbtest');
+        document.getElementById('text').innerHTML="你已连续打卡"+count+"天";
+        document.getElementById("number").innerHTML = pg.value +'/100';
+        if (cb.checked == true && pg.value != 100) {
+            pg.value += 20;
+            document.getElementById("number").innerHTML = pg.value +'/100';
+            playsound1();
+            if (ice == 1) { changePic1(); }
+            else if (ice == 2) { changePic2(); }
+            else if (ice == 3) { changePic3(); }
+            else if (ice == 4) { changePic4(); }
+            else if (ice == 5) { changePic5(); }
+        }
+        else if (cb.checked == true && pg.value == 100) 
+        { 
+            pg.value = 0;  
+            pg.value += 20;
+            document.getElementById("number").innerHTML = pg.value +'/100';
+            playsound1();
+            var imgObj = document.getElementById("myPic");
+            imgObj.src = "images/" + ice + ".png";
+            imgObj.style.width = 80 + 'px';
+            imgObj.style.height = 80 + 'px';
+        }
+    }
+    function playsound1(){
+        var mydaka=document.getElementById("sound1");
+        mydaka.play();
+    }
+    function playsound2(){
+        var myxunzhang=document.getElementById("sound2");
+        myxunzhang.play();
+    }
+    function changePic1() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.style.width = 80 + 'px';
+        imgObj.style.height = 80 + 'px';
+    }
+    function changePic2() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.style.width = 100 + 'px';
+        imgObj.style.height = 100 + 'px';
+    }
+    function changePic3() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.style.width = 120 + 'px';
+        imgObj.style.height = 120 + 'px';
+    }
+    function changePic4() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.src = "images/" + crr + ".png";
+        imgObj.style.width = 130 + 'px';
+        imgObj.style.height = 130 + 'px';
+    }
+    function changePic5() {
+        var imgObj = document.getElementById("myPic");
+        imgObj.src = "images/" + ice + ".png";
+        imgObj.style.width = 140 + 'px';
+        imgObj.style.height = 140 + 'px';
+        if(gold==1){var gifObj1 = document.getElementById("mygif1"); gifObj1.style.display = "inline"; fly_in();playsound2();}
+        else if(gold==2){ var gifObj2 = document.getElementById("mygif2"); gifObj2.style.display = "inline"; fly_in();playsound2();}
+        else if(gold==3){ var gifObj3 = document.getElementById("mygif3"); gifObj3.style.display = "inline"; fly_in();playsound2();}
+        else if(gold==4){ var gifObj4 = document.getElementById("mygif4"); gifObj4.style.display = "inline"; fly_in();playsound2();}
+        else if(gold==5){ var gifObj5 = document.getElementById("mygif5"); gifObj5.style.display = "inline"; fly_in();playsound2();}
+        
+    }
+    function fly_in()
+    {
+        $('#gt').addClass('sty');
+        var time = setTimeout(function(){
+            $('#gt').removeClass('sty')
+        },3000);
+
+    }
+
+    var SCREEN_WIDTH = window.innerWidth;
+    var SCREEN_HEIGHT = window.innerHeight;
+    
+    var container;
+    
+    var particle;
+    
+    var camera;
+    var scene;
+    var renderer;
+    
+    var mouseX = 0;
+    var mouseY = 0;
+    
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+    
+    var particles = []; 
+    var particleImage = new Image();//THREE.ImageUtils.loadTexture( "img/ParticleSmoke.png" );
+    particleImage.src = 'images/ParticleSmoke.png'; 
+
+    
+    
+    
+    function init() {
+    
+        container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.top = '0px';
+        container.style.zIndex = -2;
+        document.body.appendChild(container);
+    
+        camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
+        camera.position.z = 1000;
+    
+        scene = new THREE.Scene();
+        scene.add(camera);
+            
+        renderer = new THREE.CanvasRenderer();
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        var material = new THREE.ParticleBasicMaterial( { map: new THREE.Texture(particleImage) } );
+            
+        for (var i = 0; i < 500; i++) {
+    
+            particle = new Particle3D( material);
+            particle.position.x = Math.random() * 2000 - 1000;
+            particle.position.y = Math.random() * 2000 - 1000;
+            particle.position.z = Math.random() * 2000 - 1000;
+            particle.scale.x = particle.scale.y =  1;
+            scene.add( particle );
+            
+            particles.push(particle); 
+        }
+    
+        container.appendChild( renderer.domElement );
+    
+    
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+        document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+        
+        setInterval( loop, 1000 / 60 );
+        
+    }
+    
+    function onDocumentMouseMove( event ) {
+    
+        mouseX = event.clientX - windowHalfX;
+        mouseY = event.clientY - windowHalfY;
+    }
+    
+    function onDocumentTouchStart( event ) {
+    
+        if ( event.touches.length == 1 ) {
+    
+            event.preventDefault();
+    
+            mouseX = event.touches[ 0 ].pageX - windowHalfX;
+            mouseY = event.touches[ 0 ].pageY - windowHalfY;
+        }
+    }
+    
+    function onDocumentTouchMove( event ) {
+    
+        if ( event.touches.length == 1 ) {
+    
+            event.preventDefault();
+    
+            mouseX = event.touches[ 0 ].pageX - windowHalfX;
+            mouseY = event.touches[ 0 ].pageY - windowHalfY;
+        }
+    }
+    
+    //
+    
+    function loop() {
+    
+    for(var i = 0; i<particles.length; i++)
+        {
+    
+            var particle = particles[i]; 
+            particle.updatePhysics(); 
+    
+            with(particle.position)
+            {
+                if(y<-1000) y+=2000; 
+                if(x>1000) x-=2000; 
+                else if(x<-1000) x+=2000; 
+                if(z>1000) z-=2000; 
+                else if(z<-1000) z+=2000; 
+            }				
+        }
+    
+        camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+        camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+        camera.lookAt(scene.position); 
+    
+        renderer.render( scene, camera );
+    
+        
+    }
+    function login(){
+        var user = $('#username').val();
+        var pwd  = $('#password').val();
+        username=user;
+        $.ajax({
+            type:'POST',
+            data:{
+                'username': user,
+                'password': pwd
+            },
+            url:'http://localhost:8086/signin',
+            success:function(response){
+                console.log(response);
+                if(response.data[0]=="登陆成功"){
+                    success();
+                    ice=response.data[1];
+                    gold=response.data[2];
+                    count=response.data[3];
+                    init2();
+                }
+            },
+            error:function(response){
+                if(response.data=="没有该用户"){
+                    alert("登录失败！");
+                }
+            },
+            dataType:'json'
+        })
+        // $.post("http://39.105.0.65:8086/signin",{
+        //     "username":"123",
+        //     "password":"123"
+        // },function(data){
+        //     alert(data.status)
+        // })
+    }
+    $('#login').on('click',function(){
+        login();
+    });
+
+    function punchcard(username){
+        $.ajax({
+            type:'POST',
+            data:{
+                'username': username,
+            },
+            url:'http://localhost:8086/punchcard/do',
+            success:function(response){
+                if(response.data=="打卡成功"){
+                   
+                    search(username);
+
+                }
+                else if(response.message=="打过卡"){
+                    alert("今天您已打卡")
+                }
+            },
+            error:function(response){
+                if(response.data=="没有该用户"){
+                    alert("没有该用户")
+                }
+            },
+            dataType:'json'
+        })
+    }  
+
+    function search(username){
+        $.ajax({
+            type:'POST',
+            data:{
+                'username': username
+            },
+            url:'http://localhost:8086/punchcard/search',
+            success:function(response){
+                console.log(response.data[0]);
+                console.log(response.data[1]);
+                ice=response.data[0];
+                gold=response.data[1];
+                count=response.data[2];
+                addprogress();
+            },
+            error:function(response){
+            console.log('111');
+            },
+            dataType:'json'
+        })
+    }
+    function search2(username){
+        $.ajax({
+            type:'POST',
+            data:{
+                'username': username
+            },
+            url:'http://localhost:8086/punchcard/search',
+            success:function(response){
+                console.log(response.data[0]);
+                console.log(response.data[1]);
+                ice=response.data[0];
+                gold=response.data[1];
+                count=response.data[2];
+                console.log(ice);
+                console.log(gold);
+                console.log(count);
+            },
+            error:function(response){
+            },
+            dataType:'json'
+        })
+    }
+</script>
+
+    
+
+<!-- <script type="text/javascript">
+    $().ready(function () {
+        $('#login').click(function () {
+            if ($('#username').val() == "" || $('#password').val() == "") {
+                alert("用户名或密码不能为空！");
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/signin",
+                    data: "username=" + escape($('#username').val()) + "&password=" + escape($('#password').val()),
+                    beforeSend: function () {
+                        $("#loading").css("display", "block"); //点击登录后显示loading，隐藏输入框
+                        $("#login").css("display", "none");
+                    },
+                    success: function (msg) {
+                        $("#loading").hide(); //隐藏loading
+                        if (msg == "登陆成功") {
+                            //parent.tb_remove();
+                            parent.document.location.href = "record.html"; //如果登录成功则跳到打卡界面
+                            parent.tb_remove();
+                        }
+                        if (msg == "登陆失败") {
+                            alert("登录失败！");
+                        }
+                    },
+                    dataType:'json'
+                });
+            }
+        });
+    });
+</script> -->
+</html>

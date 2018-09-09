@@ -1,0 +1,169 @@
+header{
+    width: 100%;
+    height: 50px;
+    z-index: 5;
+    position: absolute;
+}
+#bar {
+    position: fixed;
+    top: 0;
+    width: 1550px;
+    height: 65px;
+    background-color: #66ccff;
+    color: #fff;
+  }
+
+  #bar-son:before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    height: 60px;
+    width: 400px;
+    background: transparent;
+    border-right: 50px solid transparent;
+    border-top: 90px solid #223388;
+    top:0;
+  }
+
+  #bar-son:after {
+    content: '';
+    z-index: -2;
+    position: absolute;
+    Left: 0;
+    height: 80px;
+    width: 403px;
+    background-color: transparent;
+    border-right: 54px solid transparent;
+    border-top: 96px solid #66ccff;
+    top: 0;
+  }
+
+.title{
+    width: 30%;
+    margin-top: -20px;
+    position: relative;
+    left: 60px;
+    font-size: 30px;
+}
+.title em {
+    color: #f54c53;
+}
+.title a {
+    margin: 5px 10px;
+    color: #fff;
+    text-decoration:none; 
+    font-family: Microsoft YaHei;
+    
+}
+.part{
+    width: 50%;
+    float: right;
+    margin:20px 30px;
+}
+.part ul{
+    margin:5px 10px;
+}
+.part ul li {
+    padding: 0 10px;
+    margin: 0;
+    list-style: none;
+    display: inline;
+}
+.part ul li a {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    /* -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s; */
+    text-decoration:none;
+}
+header ul li a:hover, header ul li a:focus, header ul li a:active {
+    color: white;
+    text-decoration:none;
+}
+.main{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-around;
+    width: 100%;
+    margin-top: 100px;
+}
+.check{
+    display: flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.done{
+    display: flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+progress
+{
+    height: 25px;
+    color:rgb(236, 226, 82); /*兼容IE10的已完成进度背景*/
+    border:2px solid rgb(226, 186, 52);
+    border-radius: 10px;
+    background:white;/*这个属性也可当作Chrome的已完成进度背景，只不过被下面的::progress-bar覆盖了*/      
+   
+}
+
+progress::-webkit-progress-bar
+
+{
+   background:white;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
+}
+
+progress::-webkit-progress-value
+{
+     background:rgb(236, 226, 82);
+     border-radius: 10px;
+}
+.text{
+    color:pink; 
+    -webkit-text-stroke: 1px #000; 
+
+}
+
+
+body{background-color:gainsboro}
+
+
+
+.box{ width:100%; height:1250px; }
+.box_one {width:1200px;margin: 0 auto;padding-left:23px;}
+.box_one img {width:1200px;height:500px;}
+.box_two {width:800px;height:700px;background-color:white;margin:0 auto;margin-top:20px;padding-left: 60px;}
+.box_two1 {width:1200px;padding-top: 20px;padding-left: 20px}
+.box-two2{width:1200px;}
+
+
+
+.footer{ width:1200px; height:350px; background:	#00008B;margin: 0 auto;}
+.footer_m{ width:1220px; height:300px; margin:0 auto;}
+.footer_m p.under{ text-align:center; color:#FFF; margin-top:25px;}
+.footer_mm p {  color:#FFF; }
+.footer_ml{ width:320px; height:270px; float:left; padding-top:30px; margin-left:23px;}
+.footer_ml h1{ width:300px; border-bottom:1px solid #6e7b85;  line-height:35px; height:35px; font-size:16px;color:#FFF;}
+.footer_ml h2{ font-size:12px; color:#FFF; height:30px; line-height:30px; background:url(../images/footer_bg.png) no-repeat 0 5px; padding-left:24px; margin:18px 0 30px 0;}
+.footer_ml h2 span{ color:#00c6ff}
+.footer_ml h3{ font-size:12px; color:#FFF; height:30px; line-height:30px; background:url(../images/footer_bg.png) no-repeat 0 -45px;padding-left:24px;margin:0 0 30px 0;}
+.footer_ml h3 span{ color:#00c6ff}
+.footer_ml h4{ font-size:12px; color:#FFF; height:30px; line-height:30px;background:url(../images/footer_bg.png) no-repeat 0 -98px;padding-left:24px;}
+.footer_ml h4 span{ color:#00c6ff}
+
+.footer_mm{ width:340px; height:270px; float:left; margin: 0 97px; padding-top:30px;}
+.footer_mm h1{ width:300px; border-bottom:1px solid #6e7b85; color:#FFF; line-height:35px; height:35px; font-size:16px;}
+.footer_mm ul{ margin-top:15px;}
+.footer_mm ul li{ height:20px; line-height:20px;}
+.footer_mm ul li a{ color:#FFF; letter-spacing:1px;}
+
+.footer_mr{ width:340px; height:270px; float:left;padding-top:30px;}
+.footer_mr h1{ width:300px; border-bottom:1px solid #6e7b85; color:#FFF; line-height:35px; height:35px; font-size:16px;}
+.footer_mr span{color:#00c6ff}
+.footer_mr h4{ margin-top:12px; line-height:20px; color:#FFF; letter-spacing:1px; margin-right:50px; text-indent:2em;}
+
+.footer_bk{ width:1209; height:23px; margin-left:23px;}

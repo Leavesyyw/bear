@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- content type -->
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <!-- viewport -->
+     <meta content="width=device-width,initial-scale=1" name="viewport">
+        
+     <!-- title -->
+     <title>关于我们</title>
+     <!-- add css -->
+     <link rel="stylesheet" href="css/contact.css">
+     <!-- add js -->
+     <!--引用百度地图API-->
+    <style type="text/css">
+         html,body{margin:0;padding:0;}
+             .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+              .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+     </style>
+          <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+                    </head>
+     <style>
+     html, body {
+         margin: 0;
+         padding: 0;
+         overflow:auto;
+         width: 100%;
+         height:100%;
+     }
+     </style> 
+         
+ </head>
+  
+ <body>  
+ <header>
+     <div id="bar">
+             <div class="part">
+                     <ul>
+                         <li>
+                             <a href="index.html">首页</a>
+                         </li>
+                         <li>
+                             <a href="news.html">新闻快讯</a>
+                         </li>
+                         <li>
+                             <a href="before.html">点滴打卡</a>
+                         </li>
+                         <li>
+                             <a href="contact.html">关于我们</a>
+                         </li>
+                     </ul>
+              </div>
+          <div id="bar-son">
+         <div class="title"><p><img src="images/logo.png" style="width:60px;height:60px">bear's tear</p></div>
+          </div>
+     </div>
+  </header>
+</head>
+<body>
+    <br><br>
+    <div class="box">
+        <div class="box_one">
+         <img src="images/bg.jpg">
+        </div>
+        <div class="box_two">
+           <div class="box_two1">
+                <h2><span></span>中国石油大学</h2>
+                <p>队名：BAG4+1小队</p>
+                <p>地址：山东省青岛市黄岛区 长江路街道 中国石油大学（华东）</p>
+                <p>电话：13012450257</p>
+                
+            </div>
+            <div class="box_two2">
+                    <!--百度地图容器-->
+                      <div style="width:600px;height:450px;border:#ccc solid 1px;" id="dituContent"></div>
+                 </div>
+        </div>
+    </div>
+<div class="footer">
+	<div class="footer_m">
+    	<div class="footer_ml">
+        	<h1>联系我们</h1>
+            <h2><span>Tel / 联系电话：</span>13012450257</h2>
+            <h3><span>Add / 地址：</span>山东省青岛市黄岛区</h3>
+            <h4><span>E-mail / 邮箱：</span>1198015234@qq.com</h4>
+        </div>
+      <div class="footer_mm">
+        	<h1>友情感谢</h1>
+            <p>此项目为保护北极熊，减缓全球变暖尽一份微薄之力。谨在这里致谢：</p>
+            <ul>
+                <li>jQuery</li>
+                <li>font-awesome</li>
+                <li>github上众多开源项目</li>
+                <li>提供Visual Studio Code这款优秀编辑器的Microsoft</li><br>
+                <li>千库素材网等找图网站</li>
+                <li>所有对本项目做出帮助的人</li>
+            </ul>
+        </div>
+        <div class="footer_mr">
+            <h1>关于我们</h1>
+            <h4><span>队伍名称：</span>BAG4+1小队</h4>
+            <h4><span>作品名称：</span>bear's tear</h4>
+            <h4><span>小队成员：</span>洪昕 董心怡 吕朝鑫   <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 王婧雯 赵雨农</h4>
+        </div> 
+        <div class="clear"></div>
+        <div class="footer_bk">
+        	
+        </div>
+        <p class="under">中国石油大学 BAG4+1小队</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(120.193628,35.966384);//定义一个中心点坐标
+        map.centerAndZoom(point,12);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+    var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+    map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+    var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+    map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+    var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+    map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"中国石油大学",content:"BAG4+1小队",point:"120.174943|35.952828",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+         ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+            var iw = createInfoWindow(i);
+            var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+            marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+            
+            (function(){
+                var index = i;
+                var _iw = createInfoWindow(i);
+                var _marker = marker;
+                _marker.addEventListener("click",function(){
+                    this.openInfoWindow(_iw);
+                });
+                _iw.addEventListener("open",function(){
+                    _marker.getLabel().hide();
+                })
+                _iw.addEventListener("close",function(){
+                    _marker.getLabel().show();
+                })
+                label.addEventListener("click",function(){
+                    _marker.openInfoWindow(_iw);
+                })
+                if(!!json.isOpen){
+                    label.hide();
+                    _marker.openInfoWindow(_iw);
+                }
+            })()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+</html>
