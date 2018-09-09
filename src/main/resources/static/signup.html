@@ -255,13 +255,13 @@
                 'username': user,
                 'password': pwd
             },
-            url:'http://localhost:8086/signup',
+            url:'/signup',
             dataType:'json',
             success:function(response){
                 console.log('1111');
                 console.log(response);
                 if(response.data=="注册成功"){
-                    window.location.href = "http://localhost:8086/login.html";
+                    window.location.href = "/login.html";
                     console.log("222");
                 }
             },

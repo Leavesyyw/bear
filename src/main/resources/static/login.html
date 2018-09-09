@@ -592,7 +592,7 @@
                 'username': user,
                 'password': pwd
             },
-            url:'http://localhost:8086/signin',
+            url:'/signin',
             success:function(response){
                 console.log(response);
                 if(response.data[0]=="登陆成功"){
@@ -627,7 +627,7 @@
             data:{
                 'username': username,
             },
-            url:'http://localhost:8086/punchcard/do',
+            url:'/punchcard/do',
             success:function(response){
                 if(response.data=="打卡成功"){
                    
@@ -653,7 +653,7 @@
             data:{
                 'username': username
             },
-            url:'http://localhost:8086/punchcard/search',
+            url:'/punchcard/search',
             success:function(response){
                 console.log(response.data[0]);
                 console.log(response.data[1]);
@@ -674,7 +674,7 @@
             data:{
                 'username': username
             },
-            url:'http://localhost:8086/punchcard/search',
+            url:'/punchcard/search',
             success:function(response){
                 console.log(response.data[0]);
                 console.log(response.data[1]);
