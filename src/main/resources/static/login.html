@@ -372,7 +372,7 @@
         document.getElementById("number").innerHTML = ice*20 +'/100';
         document.getElementById('text').innerHTML="你已连续打卡"+count+"天";
         var pg = document.getElementById('pg');
-        pg.value=20;
+        pg.value=20*ice;
         if (ice == 1) { changePic1(); }
         else if (ice == 2) { changePic2(); }
         else if (ice == 3) { changePic3(); }
